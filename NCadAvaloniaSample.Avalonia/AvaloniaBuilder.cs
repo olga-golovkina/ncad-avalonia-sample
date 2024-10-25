@@ -1,6 +1,6 @@
 ﻿using Avalonia;
 
-namespace NCadAvaloniaSample;
+namespace NCadAvaloniaSample.Avalonia;
 
 public static class AvaloniaBuilder
 {
