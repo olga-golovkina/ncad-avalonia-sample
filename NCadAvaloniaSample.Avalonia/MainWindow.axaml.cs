@@ -20,7 +20,7 @@ public partial class MainWindow : Window
     {
         _windowWithOwnerLoaded = (sender, _) => WindowWithOwner_Loaded(sender!, ownerHandle);
 
-        //Loaded += _windowWithOwnerLoaded;
+        Loaded += _windowWithOwnerLoaded;
 
         Show();
     }
