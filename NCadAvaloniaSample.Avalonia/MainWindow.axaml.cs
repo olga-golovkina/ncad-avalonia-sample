@@ -5,7 +5,7 @@ using NCadAvaloniaSample.Avalonia.Utils;
 
 using System;
 
-namespace NCadAvaloniaSample;
+namespace NCadAvaloniaSample.Avalonia;
 
 public partial class MainWindow : Window
 {
