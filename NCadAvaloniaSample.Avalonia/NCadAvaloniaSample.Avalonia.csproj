@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<!--Проблема в том, 
+			что библиотеки Avalonia распаковываются только при текущем значении свойства.
+			Но это еще полбеды - дальше интереснее.-->
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Avalonia" Version="11.1.0" />
+		<PackageReference Include="Avalonia.Desktop" Version="11.1.0" />
+		<PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.0" />
+		<PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.0" />
+		<PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.0" />
+	</ItemGroup>
+	
+	
+	<!--Обычно библиотеки прилетают вместе с зависимостями. 
+		Но в данном случае этого не происходит. 
+		Поэтому приходится делать это с помощью дополнительного скрипта. 		
+		Но даже это еще не все.-->
+	<!--Если в консоли nanoCAD будут выдаваться сообщения об исключениях из разряда, 
+		что не найдена библиотека - это уже странность подгрузки внешних библиотек в nanoCAD.
+		Решилось это тем, что в пути, где установлен nanoCAD, 
+		положили эти внешние библиотеки в дополнительную папку, что не есть хорошо.
+		Другим вариантом решения будет runtime подгрузка библиотек.-->
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command="copy $(OutDir)*.dll $(SolutionDir)NCadAvaloniaSample.Startup\bin\$(Configuration)\$(TargetFramework)\" />
+	</Target>
+</Project>
