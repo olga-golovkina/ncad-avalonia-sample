@@ -4,6 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 		<!--Так как библиотеки nanoCAD API хранятся на форуме, 
 			который доступен только с авторизацией, 
 			сами библиотеки или nuget-пакет не прикладываю к репозиторию. 
